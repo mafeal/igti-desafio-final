@@ -10,7 +10,7 @@
         >shopping_cart</mat-icon
       >
       <span class="flex-1"></span>
-      <a mat-button routerLink="/pedido">VER PEDIDO</a>
+      <a mat-button (click)="verPedido()">VER PEDIDO</a>
       <span class="flex-1"></span>
       <span>R$ {{ pedidoService.valorTotal | number: "0.2-2" }}</span>
     </mat-toolbar-row>
@@ -27,9 +27,7 @@
     </h2>
     <mat-list-item (click)="pedidoService.adicionaProduto(produto)">
       <span class="flex-1">{{ produto.descricao }}</span>
-      <span class="fs-small"
-        >R$ {{ produto.preco | number: "0.2-2" }}</span
-      >
+      <span class="fs-small">R$ {{ produto.preco | number: "0.2-2" }}</span>
     </mat-list-item>
   </ng-container>
 </mat-action-list>

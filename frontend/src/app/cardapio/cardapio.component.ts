@@ -1,22 +1,24 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { Produto } from '../produto';
-import { PedidoService } from '../pedido/pedido.service';
+import { Component, OnInit } from "@angular/core";
+import { Produto } from "../produto";
+import { PedidoService } from "../pedido/pedido.service";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-cardapio',
-  templateUrl: './cardapio.component.html',
-  styleUrls: ['./cardapio.component.css']
+  selector: "app-cardapio",
+  templateUrl: "./cardapio.component.html",
+  styleUrls: ["./cardapio.component.css"],
 })
 export class CardapioComponent implements OnInit {
-
   produtos: Produto[] = [];
-  constructor(private httpClient: HttpClient, public pedidoService: PedidoService) { }
+  constructor(public pedidoService: PedidoService, private router: Router) {}
 
   ngOnInit(): void {
-    this.httpClient.get<Produto[]>('http://localhost:8080/cardapio').subscribe(produtos => {
+    this.pedidoService.listarProdutos().subscribe((produtos) => {
       this.produtos = produtos;
-    })
+    });
   }
 
+  verPedido() {
+    this.router.navigate(["/pedido"]);
+  }
 }

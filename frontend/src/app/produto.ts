@@ -1,5 +1,5 @@
 export interface Produto {
-  categoria: string,
-  descricao: string,
-  preco: number
+  categoria: string;
+  descricao: string;
+  preco: number;
 }

@@ -1,0 +1,55 @@
+<div class="header">
+  <mat-toolbar color="primary">
+    <span>Atualizar pedido</span>
+  </mat-toolbar>
+</div>
+
+<mat-list>
+  <mat-list-item>
+    <strong class="flex-1">Numero do Pedido:</strong>
+    <span> {{ pedidoAtual.id }} </span>
+  </mat-list-item>
+
+  <mat-list-item>
+    <strong class="flex-1">Data e hora do pedido:</strong>
+    <span> {{ pedidoAtual.dataHora | date: "dd/MM/yyyy HH:mm" }} </span>
+  </mat-list-item>
+
+  <mat-list-item>
+    <strong class="flex-1">Situação:</strong>
+    <span>
+      <select [(ngModel)]="pedidoAtual.situacao">
+        <option>Aguardando</option>
+        <option>Em preparação</option>
+        <option>Saiu para a entrega</option>
+        <option>Entregue</option>
+      </select>
+    </span>
+  </mat-list-item>
+</mat-list>
+
+<mat-list>
+  <mat-list-item *ngIf="pedidoAtual.itens.length == 0"
+    >Seu pedido está vazio.</mat-list-item
+  >
+  <ng-container *ngFor="let item of pedidoAtual.itens; let i = index">
+    <mat-list-item>
+      <span class="flex-1">{{ item.produto.descricao }}</span>
+      <span
+        >{{ item.quantidade }} &times; R$
+        {{ item.produto.preco | number: "0.2-2" }}</span
+      >
+    </mat-list-item>
+  </ng-container>
+  <mat-list-item>
+    <strong class="flex-1">Total</strong>
+    <strong>R$ {{ valorTotal | number: "0.2-2" }}</strong>
+  </mat-list-item>
+</mat-list>
+
+<mat-toolbar>
+  <span class="flex-1">
+    <a routerLink="/gerenciar-pedido" mat-raised-button>Voltar para a lista</a>
+  </span>
+  <a (click)="atualizarStatus()" mat-raised-button color="accent">Concluir</a>
+</mat-toolbar>

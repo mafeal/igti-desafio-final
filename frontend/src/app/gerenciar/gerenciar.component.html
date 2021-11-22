@@ -1,0 +1,21 @@
+<div class="header">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span>Gerenciar pedidos</span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>
+
+<mat-action-list>
+  <ng-container *ngFor="let pedido of pedidos; let i = index">
+    <mat-list-item (click)="selecionaPedido(pedido)">
+      <span class="flex-1">
+        <span>Pedido </span>
+        <span> {{ pedido.id }}</span>
+      </span>
+      <span class="fs-small">
+        {{ pedido.situacao }}
+      </span>
+    </mat-list-item>
+  </ng-container>
+</mat-action-list>

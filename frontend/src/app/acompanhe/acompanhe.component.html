@@ -1,9 +1,25 @@
 <div class="header">
   <mat-toolbar color="primary">
-    <span>Pedido</span>
+    <span>Acompanhe seu pedido</span>
   </mat-toolbar>
 </div>
 
+<mat-list>
+  <mat-list-item>
+    <strong class="flex-1">Numero do Pedido:</strong>
+    <span> {{ ultimoPedido.id }}</span>
+  </mat-list-item>
+
+  <mat-list-item>
+    <strong class="flex-1">Data e hora do pedido:</strong>
+    <span> {{ ultimoPedido.dataHora | date: "dd/MM/yyyy HH:mm" }}</span>
+  </mat-list-item>
+
+  <mat-list-item>
+    <strong class="flex-1">Situação:</strong>
+    <span> {{ ultimoPedido.situacao }}</span>
+  </mat-list-item>
+</mat-list>
 <mat-list>
   <mat-list-item *ngIf="pedidoService.itens.length == 0"
     >Seu pedido está vazio.</mat-list-item
@@ -24,11 +40,5 @@
 </mat-list>
 
 <mat-toolbar>
-  <a routerLink="/cardapio" mat-raised-button>Incluir mais itens</a>
-  <span class="ml"></span>
-  <button mat-raised-button (click)="pedidoService.limpaPedido()">
-    Limpar
-  </button>
-  <span class="flex-1"></span>
-  <a (click)="enviaPedido()" mat-raised-button color="accent">Concluir</a>
+  <a routerLink="/cardapio" mat-raised-button>Voltar para o cardápio</a>
 </mat-toolbar>
